@@ -1,0 +1,83 @@
+<ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link active" href="/">Back</a>
+    </li>
+</ul>
+
+
+<!-- setting interview title and description in card -->
+<div class="card">
+    <div class="card-header">
+        <h1>
+            Name:
+            <%= StudentData.name %>
+        </h1>
+    </div>
+    <div class="card-body">
+        <h6>Email: <%= StudentData.email %></h6>
+        <h6>College Name: <%= StudentData.college %></h6>
+        <h6>Batch: <%= StudentData.batch %></h6>
+        <h6>Address: <%= StudentData.address %></h6>
+
+        <blockquote class="blockquote mb-0">
+            <h4>Test Scores: </h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">DSA Score</th>
+                        <th scope="col">Web-D Score</th>
+                        <th scope="col">React Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> <%= StudentData.dsa_score %></td>
+                        <td> <%= StudentData.webd_score %></td>
+                        <td> <%= StudentData.react_score %></td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </blockquote>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="container-fluid">
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <a id="showlist">Interviews Mapped</a>
+                </div>
+            </div>
+        </div>
+
+        <!--Student list to map students intially hidden-->
+        <div class="container" id="students-interview-list">
+            <h4>Intervew Status</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name Of Interview</th>
+                        <th scope="col">Current Status</th>
+                        <th scope="col">Goto Interview</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(interview in data){ %>
+                    <tr>
+                        
+                            <td>   <%= data[interview].interview_id.title %>  </td> 
+                            <td>   <%= data[interview].result %>   </td>  
+                            <td>   <button onclick="location.href='/interview/showInterview/?number=<%= data[interview].interview_id.id %>'">Expand Interview</button>    </td>
+                    </tr>
+                    <%}%>
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </div>
+</div>

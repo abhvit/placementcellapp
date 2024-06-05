@@ -1,0 +1,72 @@
+
+<a class="active" href="/csv">Export data to csv</a>
+
+
+<div class="container-fluid" style="margin-top:100px" id="students-list">
+    <h1> Students List</h1>
+    <div class="list-group">
+        <% for(student in studentData){ %>
+            <button type="button" onClick="location.href='/student/showstudent?sid=<%= studentData[student].id %>'" class="list-group-item list-group-item-action">
+                <%= studentData[student].name %>
+            </button>    
+        <% } %>
+    </div>
+</div>
+
+
+<!-- this is the add student form which will be hidden intially  -->
+<div id="add_student_form" class="container">
+    <h2>Add Student Details: </h2>
+    <div class="row">
+        <form action="./student/add-student" method="">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Email</label>
+                    <input type="email" class="form-control" name="email" id="inputEmail4" placeholder="Email" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name">Name of Student</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="inputAddress">Address</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address" required>
+            </div>
+            <div class="form-group">
+                <label for="inputBatch">Batch</label>
+                <input type="text" class="form-control" id="inputBatch" placeholder="Batch Eg.2022,2021.." name="batch" required>
+            </div>
+            <div class="form-group">
+                <label for="College">College</label>
+                <input type="text" class="form-control" id="College" placeholder="ABC University" name="college" required>
+            </div>
+            <h6>Course Scores: </h6>
+            <div class="container">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="score1">DSA Final Score:</label>
+                        <input type="number" class="form-control" id="score1" name="dsa_score" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="score2">WebD Final Score:</label>
+                        <input type="number" class="form-control" id="score2" name="webdscore" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="score3">React Final Score:</label>
+                        <input type="number" class="form-control" id="score3" name="react_score" required>
+                    </div>
+                </div>
+            </div><br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+</div>
+
+<!-- add student button -->
+<div id="add_student_container">
+    <a href="#">
+        <i class="fa-solid fa-plus"></i>
+    </a>
+</div>

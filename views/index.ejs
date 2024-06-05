@@ -1,0 +1,55 @@
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+      Bootstrap
+    </a>
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+            role="tab" aria-controls="home" aria-selected="true">Home</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="add-interview-tab" data-bs-toggle="tab" data-bs-target="#add-interview"
+            type="button" role="tab" aria-controls="add-interview" aria-selected="false">Add InterView</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="studentlist-tab" data-bs-toggle="tab" data-bs-target="#studentlist" type="button"
+            role="tab" aria-controls="studentlist" aria-selected="false">Student List</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <% if(login) {%>
+            <button class="nav-link" id="login-signup-tab" type="button" role="tab" aria-controls="login-signup" aria-selected="false" onclick="location.href='/logout'">Logout</button>      
+
+        <% }else{ %>
+            <button class="nav-link" id="login-signup-tab" data-bs-toggle="tab" data-bs-target="#login-signup" type="button"
+            role="tab" aria-controls="login-signup" aria-selected="false">Login/SignUp</button>      
+        <% } %>
+        
+    </li>
+
+</ul>
+</nav>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <%- include('home') %>
+    </div>
+    <div class="tab-pane fade" id="add-interview" role="tabpanel" aria-labelledby="add-interview-tab">
+        <%- include('add_interview') %>
+    </div>
+    <div class="tab-pane fade" id="view-jobs" role="tabpanel" aria-labelledby="view-jobs-tab">
+        casdas
+    </div>
+    <div class="tab-pane fade" id="studentlist" role="tabpanel" aria-labelledby="studentlist-tab">
+        <%- include('student_list') %>
+    </div>
+    <div class="tab-pane fade" id="login-signup" role="tabpanel" aria-labelledby="login-signup-tab">
+        <% if(login) {%>
+            <a>Logout</a>  
+        <% }else{ %>
+            <%- include('login') %>       
+        <% } %>
+        
+    </div>
+
+</div>

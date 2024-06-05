@@ -1,0 +1,115 @@
+<ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link active" href="/">Back</a>
+    </li>
+    
+
+</ul>
+
+
+<!-- setting interview title and description in card -->
+<div class="card">
+    <div class="card-header">
+        <h1>
+            <%= data.title %>
+            
+        </h1>
+    </div>
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            <% if(!data.description) { %>
+                <p>No Description</p>
+                <% }else{ %>
+                    <%= data.description %>
+                        <% } %>
+        </blockquote>
+    </div>
+</div>
+      
+    <div class="row"> 
+        <div class="container-fluid">
+            <div><h2>Students Mapped: </h2></div>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                  <div class="form-check">
+                    <a id="showlist">Map Students</a>
+                  </div>
+                </div>
+              </div>
+          
+              <!--Student list to map students intially hidden-->
+              <div class="container" id="students-interview-list">
+                <h4>Select Students to be mapped to this interview</h4>
+                <form action="/student/map" method="POST">
+                    <input type="hidden" name="inter_id" value="<%= data.id %>">
+                <% for(student in studentData){ %>
+                    
+                  <div class="list-group">
+                    <div class="list-group-item list-group-item-action">
+                      <span name>
+                        <%= studentData[student].name %>
+                      </span>
+                      <div id="map-student-checkbox">
+                        <input type="checkbox" name="student_list" value="<%= studentData[student]._id %>">
+                      </div>
+                    </div>
+                  </div>
+                  <% } %>
+                  <input type="submit" value="Map Student">
+                </form>
+              </div>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                  <th scope="col">Student Name</th>
+                  <th scope="col">DSA Score</th>
+                  <th scope="col">Web-D Score</th>
+                  <th scope="col">React Score</th>
+                  <th scope="col">Pass</th>
+                  <th scope="col">Fail</th>
+                  <th scope="col">Hold</th>
+                  <th scope="col">Not Attemt</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+            <tbody>
+               <!-- if there is no data i.e no student was mapped -->
+                    <% if(data.student_mapped.length==0) { %> 
+                        <p>NO student mapped  </p> 
+                    <%  }else{ %>
+                        <% for(let i=0;i<data.student_mapped.length;i++){ %>
+                            <tr>    
+                                <td>  <%= data.student_mapped[i].name %> </td>  
+                                <td>  <%= data.student_mapped[i].dsa_score %> </td>
+                                <td>  <%= data.student_mapped[i].webd_score %> </td>   
+                                <td>  <%= data.student_mapped[i].react_score %> </td>
+                                <form action="/student/result?sid=<%= data.student_mapped[i].id %>&jid=<%= data.id %>" method="POST">
+                                    <!-- here checking the radio if data is Pass,fail,on hold or na only else show unchecked -->
+                                        <% if( result[i].result=="Pass" ){ %> 
+                                            <td><input type="radio" class="btn btn-outline-secondary" type="" name="result" value="Pass" required checked>Pass</td>
+                                        <% }else{ %>
+                                            <td><input type="radio" class="btn btn-outline-secondary" type="" name="result" value="Pass" required>Pass</td>
+                                        <% } if(result[i].result=="Fail"){ %> 
+                                            <td><input type="radio" class="btn btn-outline-secondary" type=""  name="result" value="Fail" required checked>Fail</td>  
+                                        <% } else{ %>
+                                            <td><input type="radio" class="btn btn-outline-secondary" type=""  name="result" value="Fail" required>Fail</td>  
+                                        <% } if(result[i].result=="On hold"){ %> 
+                                        <td><input type="radio" class="btn btn-outline-secondary" type=""  name="result" value="On hold" required checked>On hold</td>
+                                        <% } else{ %>
+                                            <td><input type="radio" class="btn btn-outline-secondary" type=""  name="result" value="On hold" required>On hold</td>
+                                        <% } if(result[i].result=="NA"){ %> 
+                                            <td><input type="radio" class="btn btn-outline-secondary" type=""  name="result" value="NA" required checked>N.A</td>
+                                        <% }else{ %>
+                                            <td><input type="radio" class="btn btn-outline-secondary" type=""  name="result" value="NA" required>N.A</td>
+                                        <% } %>
+                                    <td><input type="submit" class="btn btn-primary"></td>
+                                </form>
+                            </tr>
+                        <% } %>
+                    <% } %> 
+               
+            </tbody>
+        </table>
+    </div>
+</div>

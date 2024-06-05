@@ -1,0 +1,82 @@
+<!-- this is the add interview form which will be hidden intially  -->
+<div id="add_interview_form" class="container">
+  <h2>Add Interview Details: </h2>
+  <form action="./interview/add-interview" method="POST">
+    <div class="form-group row">
+      <label for="title" class="col-sm-2 col-form-label">Interview Title*</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="title" name="title" placeholder="SDE 1 at ABC.PvT.Ltd" required>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inter_date" class="col-sm-2 col-form-label">Interview Date*</label>
+      <div class="col-sm-10">
+        <input type="date" class="form-control" name="date" id="inter_date" required>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inter_date" class="col-sm-2 col-form-label">Job Description(Optional)</label>
+      <div class="col-sm-10">
+        <textarea placeholder="Job Description here" name="description"></textarea>
+      </div>
+    </div>
+    <br>
+    <div class="form-group row">
+      <div class="col-sm-2">MapStudents(Optional)</div>
+      <div class="col-sm-10">
+        <div class="form-check">
+          <a id="showlist">Select Students</a>
+        </div>
+      </div>
+    </div>
+
+    <!--Student list to map students intially hidden-->
+    <div class="container" id="students-interview-list">
+      <h4>Select Students to be mapped to this interview</h4>
+      <% for(student in studentData){ %>
+        <div class="list-group">
+          <div class="list-group-item list-group-item-action">
+            <span>
+              <%= studentData[student].name %>
+            </span>
+            <div id="map-student-checkbox">
+              <input type="checkbox" name="student_list" value="<%= studentData[student]._id %>">
+            </div>
+          </div>
+        </div>
+        <% } %>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button type="submit" class="btn btn-primary">Add interview</button>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<!-- add interview button -->
+<div id="add_interview_container">
+  <a href="#">
+    <i class="fa-solid fa-plus"></i>
+  </a>
+</div>
+
+
+<!--show the interviews-->
+<div class="container-fluid" style="margin-top:100px" id="interview-list">
+  <h1> Interviews List</h1>
+  <div class="list-group">
+      <% for(interview in interviewData){ %>
+          <button type="button" class="list-group-item list-group-item-action" onclick="location.href='/interview/showInterview/?number=<%= interviewData[interview].id %>'">
+          <p class="interview-list-title"> <%= interviewData[interview].title %></p>
+          <p class="interview-list-description"> <%= interviewData[interview].description %></p>
+          <p class="interview-list-date"> Interview Date : <%= interviewData[interview].date %></p>
+          </button>    
+      <% } %>
+  </div>
+</div>
+
+
+

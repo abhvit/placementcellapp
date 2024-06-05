@@ -1,0 +1,39 @@
+textarea{
+    width:100%;
+    resize: none;
+    border-radius:5px;
+}
+#add_student_container,#add_interview_container{
+    background-color:#76a9f7;
+    position: fixed;
+    bottom: 10;
+    right: 10;
+    border-radius:50%;
+    font-size:30px;
+    padding:10px;
+    z-index: 5;
+    color: #000;
+}
+#add_student_form,#add_interview_form,#students-interview-list,#signup-form{
+    padding:20px;
+    display:none;
+}
+#map-student-checkbox{
+    float: right;
+}
+/*show list button on add-interview*/
+#showlist{
+    width:5%;
+    background-color:#5c5ee2;
+    padding:10px;
+    cursor: pointer;
+    color:#ffffff;
+    border-radius:5px;
+}
+/* styling for list elements for interview */
+.interview-list-description{
+    color:#778899;
+}
+.interview-list-date{
+    color:#565b5f;
+}
